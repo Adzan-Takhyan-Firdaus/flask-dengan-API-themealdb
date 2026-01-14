@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tim Kami</title>
+    
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900');
+
+        body {
+            background-color: #eee;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .box { padding: 40px 0; }
+
+        .box-column {
+            background-color: #fff;
+            width: 100%;
+            float: left;
+            padding-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .box-column:hover {
+            transform: translateY(-10px);
+        }
+        
+        /* HEADER FOTO */
+        .box-header {
+            width: 100%;
+            height: 300px; /* Tinggiin dikit biar muat foto panjang */
+            background-color: #f8f9fa; /* Ganti background jadi putih/abu muda */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px; /* Kasih jarak biar ga nempel pinggir */
+        }
+        
+        .box-header img {
+            width: auto;  /* Lebar menyesuaikan */
+            height: 100%; /* Tinggi mentok container */
+            max-width: 100%; 
+            object-fit: contain; /* PENTING: Biar foto UTUH ga kepotong */
+            border-radius: 5px; /* Kasih lengkungan dikit di foto */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Kasih bayangan di fotonya */
+            transition: transform 0.5s;
+        }
+        
+        .box-header:hover img {
+            transform: scale(1.05); /* Efek zoom dikit pas di hover */
+        }
+
+        .box-bottom { padding: 20px; text-align: center; }
+
+        .chef-name {
+            background: linear-gradient(45deg, #f2935b, #6f49c0);
+            font-size: 18px;  
+            font-weight: 800;
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .chef-nim {
+            color: #777;
+            font-weight: 600;
+            font-size: 14px;
+            background: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .btn-home {
+            background: #333; color: #fff; padding: 10px 25px;
+            border-radius: 50px; font-weight: bold; text-decoration: none;
+            display: inline-block; margin-bottom: 30px;
+        }
+        .btn-home:hover { text-decoration: none; background: #000; color: #fff; }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <div class="container">
+        
+        <div class="row mb-3 text-center">
+            <div class="col-12">
+                <h2 style="font-weight: 800; color: #333; text-transform: uppercase;">
+                    MASTER CHEF
+                </h2>
+                <p class="text-muted">Kelompok V</p>
+                <a href="/" class="btn-home">← Kembali ke Dapur</a>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            
+            {% for member in tim %}
+            <div class="col-md-4 col-sm-6 col-12">
+                <div class="box-column">
+                    <div class="box-header">
+                        <img src="{{ member.foto }}" alt="{{ member.nama }}">
+                    </div>
+                    
+                    <div class="box-bottom">
+                        <div class="chef-name">
+                            {{ member.nama }}
+                        </div>
+                        <div class="chef-nim">
+                            {{ member.nim }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>      
+    </div>
+</div>
+
+</body>
+</html>

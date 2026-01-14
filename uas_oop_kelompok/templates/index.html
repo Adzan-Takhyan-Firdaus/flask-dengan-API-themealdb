@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Makanan</title>
+    
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900');
+
+        body {
+            background-color: #eee;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        a:hover, a:focus {
+            text-decoration: none;
+        }
+
+        .box {
+            padding: 40px 0;
+        }
+
+        .box-column {
+            background-color: #fff;
+            width: 100%;
+            float: left;
+            padding-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .box-column:hover {
+            transform: translateY(-10px);
+        }
+        
+        .box-header {
+            width: 100%;
+            height: 200px; 
+            overflow: hidden;
+            background-color: #ddd; /* Warna abu kalo gambar belum load */
+        }
+        .box-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .box-header:hover img {
+            transform: scale(1.1);
+        }
+
+        .box-bottom {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .food-title {
+            background: linear-gradient(45deg, #f2935b, #6f49c0);
+            font-size: 18px;  
+            font-weight: 700;
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .box-text {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .btn-gradient {
+            background: linear-gradient(45deg, #cae1f3, #55aded); /* Biru Twitter */
+            color: white;
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            border: none;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(85, 173, 237, 0.4); /* Shadow biru */
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 5px;
+        }
+        
+        .btn-gradient:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(85, 173, 237, 0.6);
+            color: white;
+            text-decoration: none;
+        }
+
+        .btn-reset {
+            background: #999;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .btn-reset:hover {
+            background: #777;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <div class="container">
+        
+        <div class="row mb-5 align-items-center">
+            <div class="col-12 text-center">
+                <h2 style="font-weight: 800; color: #333; text-transform: uppercase; letter-spacing: 2px;">
+                    {{ title }}
+                </h2>
+                
+                <div class="mt-4">
+                    <a href="/categories" class="btn-gradient">
+                        KATEGORI 📂
+                    </a>
+                    <a href="/about" class="btn-gradient">
+                        CHEF TEAM 👨‍🍳
+                    </a>
+
+                    {% if title != "Menu Rekomendasi" %}
+                        <a href="/" class="btn-gradient btn-reset">
+                            RESET ↻
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            {% for item in products %}
+            <div class="col-lg-4 col-md-6 col-12 mb-4">
+                <div class="box-column">
+                    <div class="box-header">
+                        <img src="{{ item.strMealThumb }}" alt="{{ item.strMeal }}" loading="lazy">
+                    </div>
+                    
+                    <div class="box-bottom">
+                        <div class="food-title">
+                            {{ item.strMeal }}
+                        </div>
+
+                        {% if item.strCategory %}
+                        <div class="box-text">
+                            {{ item.strCategory }} | {{ item.strArea }}
+                        </div>
+                        {% endif %}
+                        
+                        <a href="/product/{{ item.idMeal }}" class="btn-gradient">
+                            LIHAT RESEP
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+            {% if products|length == 0 %}
+            <div class="col-12 text-center">
+                <p class="text-muted">Sedang memuat data atau tidak ada menu...</p>
+            </div>
+            {% endif %}
+        </div>
+        
+    </div>
+</div>
+
+</body>
+</html>

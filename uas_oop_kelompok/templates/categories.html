@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Kategori</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900');
+        body { background-color: #eee; font-family: 'Montserrat', sans-serif; }
+        
+        .cat-box {
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            display: block; /* Biar bisa diklik full kotak */
+            color: #333;
+        }
+        .cat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: #333;
+        }
+        .cat-img {
+            width: 100%;
+            max-height: 120px;
+            object-fit: contain; /* Biar gambar kategori ga kepotong */
+            margin-bottom: 15px;
+        }
+        .cat-title {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .btn-home {
+            background: #ddd; color: #333; padding: 10px 20px;
+            border-radius: 50px; font-weight: bold; text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h2 style="font-weight: 800; color: #333;">PILIH KATEGORI</h2>
+            <p class="text-muted">Mau masak bahan apa hari ini?</p>
+            <a href="/" class="btn-home">← Kembali ke Home</a>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for cat in categories %}
+        <div class="col-md-3 col-6">
+            <a href="/category/{{ cat.strCategory }}" class="cat-box">
+                <img src="{{ cat.strCategoryThumb }}" class="cat-img" alt="{{ cat.strCategory }}">
+                <div class="cat-title">{{ cat.strCategory }}</div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>
