@@ -11,6 +11,14 @@ This project was developed as a Final Exam (UAS) assignment for the **Object-Ori
 
 The app fetches data in real-time from the public **TheMealDB API**, demonstrating the implementation of RESTful API consumption in a Python Flask environment.
 
+Kelompok V Anggota :
+
+Adzan Takhyan Firdaus (302410043)
+Dimas Anggraito Wicaksono (312410585)
+Muhammad Khoirul Anam (312410013)
+Nabila Rahmadani (312410656)
+Wulan Melinda Sari (312410028)
+
 ## ✨ Key Features
 * **Dynamic Home Page**: Displays random meal recommendations and search functionality.
 * **Smart Ingredient Parsing**: Converts scattered ingredient data from the API into a clean, readable list using Python logic.
